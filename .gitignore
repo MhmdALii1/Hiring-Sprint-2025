@@ -1,0 +1,16 @@
+# Python virtual environments
+.venv/
+.venv311/
+
+# YOLO training outputs
+runs/detect/
+
+# Byte-compiled / cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# OS files
+.DS_Store
+Thumbs.db

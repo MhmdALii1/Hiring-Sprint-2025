@@ -1,44 +1,35 @@
-# backend/app/schemas.py
-"""
-Pydantic models for request/response payloads used by the VCA API.
-Severity is an integer 1..10. Cost estimates are integer USD approximations.
-"""
 from pydantic import BaseModel
 from typing import List
+from enum import Enum
 
+# -----------------------------
+# Damage type enumeration
+# -----------------------------
+class DamageType(str, Enum):
+    broken_glass = "Broken glass"
+    dent = "Dent"
+    scratch = "Scratch"
+    front_end_damage = "front-end-damage"
+    rear_end_damage = "rear-end-damage"
+    side_impact_damage = "side-impact-damage"
+    other_damage = "other_damage"
 
+# -----------------------------
+# Represents a single detected damage
+# -----------------------------
 class Damage(BaseModel):
-    """
-    Represents a detected damage item.
-    - type: damage category label (demo mapping)
-    - severity: integer 1..10
-    - cost_estimate: integer USD
-    - coordinates: bounding box [x1, y1, x2, y2]
-    """
-    type: str
-    severity: int
-    cost_estimate: int
-    coordinates: List[int]
+    type: DamageType                # Category of damage
+    severity: int                   # 1-10 severity score derived from confidence
+    confidence: float               # YOLO detection confidence
+    coordinates: List[int]          # Bounding box [x1, y1, x2, y2]
+    estimated_cost: int             # Cost estimate based on type & severity
 
-
+# -----------------------------
+# Complete comparison report
+# -----------------------------
 class CompareResponse(BaseModel):
-    """
-    Response when comparing before/after images.
-    - session_id: generated session identifier for this inspection
-    - before_image, after_image: saved file paths (temporary)
-    - new_damages: list of Damage items found in the after image
-    - total_cost_estimate: integer USD total for new damages
-    - summary: short human-readable summary
-    """
-    session_id: str
-    before_image: str
-    after_image: str
-    new_damages: List[Damage]
-    total_cost_estimate: int
-    summary: str
-
-
-class ImageUploadResponse(BaseModel):
-    """Generic response for an upload operation."""
-    filename: str
-    message: str
+    before_image: str               # Path or URL to before image
+    after_image: str                # Path or URL to after image
+    new_damages: List[Damage]       # List of new damages detected
+    total_cost_estimate: int        # Sum of estimated costs
+    summary: str                    # Human-readable summary

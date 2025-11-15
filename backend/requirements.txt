@@ -1,0 +1,21 @@
+# Web framework for API
+fastapi==0.121.2
+
+# ASGI server to run FastAPI
+uvicorn[standard]==0.23.2
+
+# Data validation & schemas
+pydantic==2.12.4
+
+# Support for file uploads
+python-multipart==0.0.20
+
+# Image processing
+Pillow==12.0.0
+opencv-python==4.7.0.72
+
+# YOLOv8 / Ultralytics for damage detection
+ultralytics==8.3.117
+
+# Optional: numerical operations (if needed in future)
+numpy==1.24.4

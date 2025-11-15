@@ -1,32 +1,36 @@
-# backend/app/main.py
-"""
-Entrypoint for the Vehicle Condition Assessment (VCA) backend.
-Creates the FastAPI app, configures CORS, and includes API routes.
-"""
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routes import router
 
+# -----------------------------
+# FastAPI application instance
+# -----------------------------
 app = FastAPI(
-    title="Vehicle Condition Assessment API (MVP)",
-    description="Backend API for AI-powered vehicle inspection",
-    version="1.0.0",
+    title="Vehicle Condition Assessment",
+    description="AI-powered vehicle damage detection and cost estimation",
+    version="1.0"
 )
 
-# Allow frontend to call this API during development.
-# In production restrict allow_origins to the frontend domain.
+# -----------------------------
+# Enable CORS for frontend
+# -----------------------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # Change to frontend URL in production
+    allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["*"]
 )
 
-# Mount the routes under /api to keep URLs organized
-app.include_router(router, prefix="/api")
+# Include API routes
+app.include_router(router)
 
-
+# -----------------------------
+# Health check endpoint
+# -----------------------------
 @app.get("/")
-def root():
-    """Health check endpoint (useful for monitoring / smoke tests)."""
-    return {"status": "ok", "message": "VCA backend running"}
+def health_check():
+    """
+    Simple endpoint to check API status
+    """
+    return {"status": "ok"}
