@@ -14,3 +14,36 @@ __pycache__/
 # OS files
 .DS_Store
 Thumbs.db
+
+
+# Node modules
+node_modules/
+
+# Angular / Ionic build output
+www/
+dist/
+out-tsc/
+
+# Environment files
+.env
+
+# IDE/editor config files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Optional: ignore local Ionic/Capacitor platforms
+ios/
+android/

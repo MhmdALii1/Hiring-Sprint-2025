@@ -1,0 +1,8 @@
+<h1>Inspection Report</h1>
+
+<div *ngIf="report">
+  <p>{{ report.summary }}</p>
+  <p>Total estimated cost: ${{ report.total_cost_estimate }}</p>
+
+  <canvas #canvas style="max-width: 100%; border: 1px solid black"></canvas>
+</div>

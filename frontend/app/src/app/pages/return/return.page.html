@@ -1,0 +1,7 @@
+<h1>Return Vehicle</h1>
+
+<input type="file" multiple (change)="onFilesSelected($event)" />
+
+<p *ngIf="files.length">Files selected: {{ selectedFileNames }}</p>
+
+<button (click)="compare()">Compare Images</button>
