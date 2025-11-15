@@ -101,3 +101,19 @@ The solution can be a **web** or **mobile** app. Use of pretrained AI/ML models 
 
 
 > 🏁 **Good luck!** Focus on a **working prototype**, clear UI, and AI-powered inspection summary 🚀.
+
+
+---
+
+
+> ## Backend:
+> already deployed, no need to do anything.
+
+
+
+---
+
+
+
+>  ## Frontend:
+> npm install inside app, then run ionic serve (requires latest node, angular and ionic version).
